@@ -1,0 +1,17 @@
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.tmp
+*.db
+*.sqlite3
+.venv/
+venv/
+env/
+.vscode/
+.idea/
+.dockerignore
+.DS_Store
+Thumbs.db
