@@ -24,7 +24,7 @@ client = discord.Client(intents=intents)
 
 # Dictionnaire pour stocker les derniers timestamps par user
 last_checked = {}
-CHECK_DELAY = 5  # secondes entre 2 checks
+CHECK_DELAY = 30  # secondes entre 2 checks
 
 async def check_insta_messages():
     """Boucle qui check les nouveaux DMs Instagram et les envoie sur Discord"""
