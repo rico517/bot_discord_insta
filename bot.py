@@ -38,11 +38,14 @@ async def check_insta_messages():
                     continue  # ignore soi-même
 
                 for msg in thread.messages:
+                    if msg.user_id == insta.user_id:  
+                        continue
                     ts = msg.timestamp.timestamp()
-                    if last_checked.get(username, 0) < ts:
+                    sender = insta.user_info(msg.user_id).username
+                    if last_checked.get(sender, 0) < ts:
                         channel = client.get_channel(DISCORD_CHANNEL_ID)
-                        await channel.send(f"[Insta] **{username}**: {msg.text}")
-                        last_checked[username] = ts
+                        await channel.send(f"[Insta] **{sender}**: {msg.text}")
+                        last_checked[sender] = ts
         await asyncio.sleep(CHECK_DELAY)
 
 @client.event
