@@ -42,6 +42,8 @@ async def check_insta_messages():
                         continue
                     ts = msg.timestamp.timestamp()
                     sender = insta.user_info(msg.user_id).username
+                    if username == INSTA_USERNAME:
+                        continue  # ignore soi-même
                     if last_checked.get(sender, 0) < ts:
                         channel = client.get_channel(DISCORD_CHANNEL_ID)
                         await channel.send(f"[Insta] **{sender}**: {msg.text}")
