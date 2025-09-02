@@ -42,7 +42,7 @@ async def check_insta_messages():
                         continue
                     ts = msg.timestamp.timestamp()
                     sender = insta.user_info(msg.user_id).username
-                    if username == INSTA_USERNAME:
+                    if sender == INSTA_USERNAME:
                         continue  # ignore soi-même
                     if last_checked.get(sender, 0) < ts:
                         channel = client.get_channel(DISCORD_CHANNEL_ID)
@@ -70,6 +70,7 @@ async def on_message(message):
             user_id = insta.user_id_from_username(target_username)
             insta.direct_send(text, [user_id])
             await message.channel.send(f"📤 Réponse envoyée à **{target_username}** : {text}")
+            await message.delete()
         except Exception as e:
             await message.channel.send(f"⚠️ Erreur: {e}")
 
